@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>django level 2 </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+
+
+  </head>
+  <body>
+    <div class="container">
+
+    <h1>FMEA RECORD</h1>
+
+      <nav class="navbar navbar-default navbar-static-top"
+      <ul class="nav navbar-nav">
+      <li><a class="navbar-link", href="{% url "admin:index" %}">Admin</a></li>
+        <li><a class="navbar-link" href="{% url "add_post" %}">Fmea Entry</a></li>
+      </ul>
+      </nav>
+
+
+
+    <link rel="stylesheet" href="{% static "css/mystyle.css" %}"/>
+
+      {% if access_records %}
+
+      <table>
+          <caption>FMEA STATUS</caption>
+         <thead>
+             <th>Part_list</th>
+             <th>Process/Function</th>
+             <th>RPN</th>
+             <th>Actions_Taken</th>
+             <th> RPN_Rev</th>
+
+        </thead>
+
+          {% for acc in access_records %}
+          {% if acc.RPN > 100 %}
+          <tr>
+            <td>{{acc.All_parts}}</td>
+            <td>{{acc.Process_OR_Function}}</td>
+            <td>{{ acc.RPN }}</td>
+            <td>{{ acc.Actions_Taken }}</td>
+            <td>{{ acc.RPN_Rev }}</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+      </table>
+      {% else %}
+        <p>NO ACCESS RECORD</p>
+      {% endif %}
+
+    </div>
+
+  </body>
+</html>
